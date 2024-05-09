@@ -24,10 +24,15 @@ Follow these steps to set up and run the project:
     ```bash
     docker compose up -d
     ```
-    
-4. **Testing the API**: Use Postman to test the API endpoints. Import the provided Postman collection and environment files.
 
-5. **Code Editing**: Open the project folder in Visual Studio Code to edit the source code.
+4. **Connect to Database**: You can connect to PostgreSQL using a PostgreSQL client or the psql command-line tool using the following command:
+    ```bash
+    psql -h <container_ip_address> -p <port> -U <username> -d <database_name>
+    ```
+    
+5. **Execute DDL Queries**:  After connecting, execute the DDL queries in `ddl_query.sql` to create tables as needed.
+
+6. **Testing the API**: Use Postman to test the API endpoints. Import the provided Postman collection file.
 
 ## API Endpoints
 The API includes the following endpoints for CRUD operations on the user entity:
