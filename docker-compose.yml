@@ -1,0 +1,31 @@
+version: '2'
+services:
+  postgres-db:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: admin
+      POSTGRES_USER: postgres
+      PGDATA: /var/lib/postgresql/data
+      POSTGRES_DB: sample
+    volumes:
+      - /home/app/pg-data:/var/lib/postgresql/data
+    ports:
+      - 5434:5432/tcp
+  flask-app:
+    image: project5
+    environment:
+      MB_DB_DBNAME: postgres
+      MB_DB_HOST: postgres-db
+      MB_DB_PASS: admin
+      MB_DB_PORT: 5432
+      MB_DB_TYPE: postgres
+      MB_DB_USER: postgres
+    volumes:
+      - ./app:/app
+    links:
+      - postgres-db:postgres-db
+    ports:
+      - 5000:5000/tcp
+volumes:
+  pg-data: #docker volume create pg-data
+    external: true
